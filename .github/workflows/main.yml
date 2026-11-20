@@ -65,9 +65,10 @@ jobs:
           cat server.log
           exit 1
 
-      
       - name: Run all automated tests
-        run: npm run test:report
+        run: |
+          mkdir -p test-results
+          npm run test:report
 
       - name: Upload JUnit test report
         if: always()
