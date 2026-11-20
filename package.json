@@ -7,7 +7,8 @@
   "start": "node app/server.js",
   "test:db": "node --test tests/database.test.js",
   "test:api": "node --test tests/api-database.test.js tests/api-negative.test.js",
-  "test": "node --test tests/*.test.js"
+  "test": "node --test tests/*.test.js",
+  "test:report": "node --test --test-reporter=spec --test-reporter-destination=stdout --test-reporter=junit --test-reporter-destination=test-results/results.xml tests/*.test.js"
 },
   "keywords": [],
   "author": "",

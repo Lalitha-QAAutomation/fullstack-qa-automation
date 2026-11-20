@@ -65,8 +65,17 @@ jobs:
           cat server.log
           exit 1
 
+      
       - name: Run all automated tests
-        run: npm test
+        run: npm run test:report
+
+      - name: Upload JUnit test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-test-report
+          path: test-results/results.xml
+          if-no-files-found: warn
 
       - name: Upload server logs on failure
         if: failure()
@@ -75,3 +84,4 @@ jobs:
           name: express-server-logs
           path: server.log
           if-no-files-found: ignore
+
