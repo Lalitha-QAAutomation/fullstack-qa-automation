@@ -54,6 +54,9 @@ jobs:
       - name: Initialize stored procedures
         run: psql -v ON_ERROR_STOP=1 -f db/procedures.sql
 
+      - name: Apply database migrations
+        run: psql -v ON_ERROR_STOP=1 -f db/migrations/001_add_employment_status.sql
+
       - name: Start Express API
         run: |
           node app/server.js > server.log 2>&1 &
