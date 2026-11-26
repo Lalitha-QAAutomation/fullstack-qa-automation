@@ -46,7 +46,10 @@ jobs:
         run: npm ci
 
       - name: Initialize database schema
-        run: psql -f db/schema.sql
+        run: psql -v ON_ERROR_STOP=1  -f db/schema.sql
+
+      - name: Initialize database triggers
+        run: psql -v ON_ERROR_STOP=1 -f db/triggers.sql
 
       - name: Start Express API
         run: |
